@@ -1,3 +1,3 @@
 tasks:
-  - command: pip install flask
+  - command: pip install flask pytest
   - command: export FLASK_APP="flaskr/__init__.py"
