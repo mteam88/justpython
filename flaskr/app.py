@@ -1,4 +1,7 @@
-app = Flask(__name__)
+from flask import Flask
+
+app = Flask("main")
+import db
 
 @app.route('/')
 def index():

@@ -1,4 +1,4 @@
-import dbinterface
+from . import dbinterface
 
-class pickledb(dbinterface):
+class dbpickle(dbinterface.CRUDdbInterface):
     pass
