@@ -1,0 +1,1 @@
+stockwidgets = ["AAPL", 'TSLA', 'SPY']

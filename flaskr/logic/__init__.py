@@ -1,0 +1,1 @@
+from stockwidget import stockwidgets

@@ -1,5 +1,6 @@
 from flask import Flask
 import flask
+from logic import stockwidgets
 
 
 app = Flask(__name__,
@@ -9,7 +10,7 @@ app = Flask(__name__,
 
 @app.route('/')
 def homehandler():
-    return flask.render_template('views/home.html', stockwidgets=['AAPL', 'TSLA', 'SPY'])
+    return flask.render_template('views/home.html', stockwidgets=stockwidgets)
 
 if __name__ == '__main__':
     app.debug = True
