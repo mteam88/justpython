@@ -5,26 +5,26 @@ class CRUDdbInterface(ABC):
     CRUD database interface
     """
     @abstractmethod
-    def create(self, to_save):
+    def create(self, to_save, recordid=None):
         """
-        Store/save "to_save." Returns id.
-        """
-        pass
-    @abstractmethod
-    def read(self, id):
-        """
-        Read from database by id. Returns object that was stored with create(<object here>)
+        Store/save "to_save." Returns recordid.
         """
         pass
     @abstractmethod
-    def update(self, id, field, value):
+    def read(self, recordid):
         """
-        Update id:field to value. Should be used sparingly. Returns None.
+        Read from database by recordid. Returns object that was stored with create(<object here>)
         """
         pass
     @abstractmethod
-    def delete(self, id):
+    def update(self, recordid, value):
         """
-        Delete record by id. Returns None.
+        Update recordid to value. Should be used sparingly. Returns None.
+        """
+        pass
+    @abstractmethod
+    def delete(self, recordid):
+        """
+        Delete record by recordid. Returns None.
         """
         pass
