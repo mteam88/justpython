@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import Flask, request
 import flask
-from logic import stockwidgets
+from flaskr.logic import stockwidgets
 
 
 app = Flask(__name__,
@@ -10,6 +10,7 @@ app = Flask(__name__,
 
 @app.route('/')
 def homehandler():
+    app.logger.critical(request.__dict__)
     return flask.render_template('views/home.html', stockwidgets=stockwidgets)
 
 if __name__ == '__main__':
