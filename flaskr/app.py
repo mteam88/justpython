@@ -1,5 +1,5 @@
 from flask import Flask, request
-import flask
+import flask, flask_login
 from flaskr.logic import stockwidgets
 
 
@@ -7,6 +7,7 @@ app = Flask(__name__,
             static_url_path='', 
             static_folder='static/',
             template_folder='templates/')
+app.register_blueprint('blueprints/account.py')
 
 @app.route('/')
 def homehandler():
