@@ -8,4 +8,4 @@ from stockwidget import stockwidgets
 
 def isuser(userloginform):
     print(f"Login: {userloginform}")
-    return True
+    return False

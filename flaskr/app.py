@@ -12,7 +12,6 @@ app.register_blueprint(account_bp)
 
 @app.route('/')
 def homehandler():
-    app.logger.critical(request.__dict__)
     return flask.render_template('views/home.html', stockwidgets=stockwidgets)
 
 if __name__ == '__main__':

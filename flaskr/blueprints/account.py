@@ -19,17 +19,21 @@ def login():
   form = RegistrationForm(request.form)
   if request.method == 'POST' and form.validate():
       if logic.isuser(form):
-          return redirect(url_for(''))
+          return redirect(url_for('homehandler'))
       else:
-        return redirect(url_for('/register'))
-  return render_template('login.html', error=error)
+        return redirect(url_for('account_bp.register'))
+  return render_template('views/login.html', error=error)
 
 @account_bp.route("/register", methods=['GET', 'POST'])
 def register():
   error = None
+  form = RegistrationForm(request.form)
   if request.method == 'POST':
+    if form.validate():
       if request.form['username'] != 'admin' or request.form['password'] != 'admin':
           error = 'Invalid Credentials. Please try again.'
       else:
-          return redirect(url_for(''))
-  return render_template('register.html', error=error)
+          return redirect(url_for('homehandler'))
+    else:
+      error = 'Your username must be between '
+  return render_template('views/register.html', error=error)
