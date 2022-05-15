@@ -29,7 +29,7 @@ def register():
   form = RegistrationForm(request.form)
   if request.method == 'POST':
     if form.validate():
-      db.registerUser(form)
+      db.register_user(form)
       return redirect(url_for('homehandler'))
     else:
       error = '''Invalid username or password. Your username must be at least 4 
