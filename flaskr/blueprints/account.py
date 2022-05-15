@@ -17,10 +17,14 @@ def login():
   error = None
   form = RegistrationForm(request.form)
   if request.method == 'POST' and form.validate():
-      if db.is_user(form):
-          return redirect(url_for('homehandler'))
-      else:
-        return redirect(url_for('account_bp.register'))
+    if db.is_user(form):
+      flash(f'You have been logged in as {form.username.data}')
+      return redirect(url_for('homehandler'))
+    else:
+      return redirect(url_for('account_bp.register'))
+  else:
+    error = '''Invalid username or password. Your username must be at least 4 
+        characters and at most 25. Your password must be at least 6 characters and at most 30.'''
   return render_template('views/login.html', error=error)
 
 @account_bp.route("/register", methods=['GET', 'POST'])
