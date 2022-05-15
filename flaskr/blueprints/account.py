@@ -1,10 +1,9 @@
 from flask import Blueprint, render_template, request, flash, url_for, redirect
 from wtforms import Form, BooleanField, StringField, PasswordField, validators
 from .. import logic
+from .. import db
 
-account_bp = Blueprint(
-  "account_bp", __name__
-)
+account_bp = Blueprint("account_bp", __name__)
 class RegistrationForm(Form):
     username = StringField('Username', [validators.Length(min=4, max=25)])
     password = PasswordField('New Password', [
@@ -30,10 +29,9 @@ def register():
   form = RegistrationForm(request.form)
   if request.method == 'POST':
     if form.validate():
-      if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-          error = 'Invalid Credentials. Please try again.'
-      else:
-          return redirect(url_for('homehandler'))
+      db.registerUser(form)
+      return redirect(url_for('homehandler'))
     else:
-      error = 'Your username must be between '
+      error = '''Invalid username or password. Your username must be at least 4 
+         characters and at most 25. Your password must be at least 6 characters and at most 30.'''
   return render_template('views/register.html', error=error)

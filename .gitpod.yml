@@ -1,5 +1,5 @@
 tasks:
-  - command: pip install flask pytest tinydb flask-login wtforms
+  - command: pip install flask pytest tinydb flask-login wtforms bcrypt
   - command: export FLASK_APP="flaskr/app.py"
   - command: export FLASK_DEBUG=true
   - command: export FLASK_ENV="development"

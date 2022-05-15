@@ -5,6 +5,7 @@
         <title>Stonks📈</title>
     </head>
     <body>
+        {% include 'macros/_topnav.html' %}
         <h1>Stonks</h1>
         {% for stockwidget in stockwidgets: %}
             {{stockwidget}}
