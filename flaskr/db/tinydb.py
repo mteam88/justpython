@@ -9,4 +9,4 @@ def register_user(registrationform):
 
     accountdb.insert({'username': registrationform.username.data, 'password': hashedpasswd})
 
-def login_user
+def is_user()

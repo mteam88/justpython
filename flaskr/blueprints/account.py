@@ -17,7 +17,7 @@ def login():
   error = None
   form = RegistrationForm(request.form)
   if request.method == 'POST' and form.validate():
-      if logic.isuser(form):
+      if db.is_user(form):
           return redirect(url_for('homehandler'))
       else:
         return redirect(url_for('account_bp.register'))
