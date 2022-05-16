@@ -9,6 +9,8 @@ app = Flask(__name__,
             static_folder='static/',
             template_folder='templates/')
 app.register_blueprint(account_bp)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec&^(^&*&^*T^897687t*&^%*&^^7^&*6*&6(*&87jbHKJhKJHNKjhnbjuy98youIYiuHKUY7Y7'
+
 
 @app.route('/')
 def homehandler():
