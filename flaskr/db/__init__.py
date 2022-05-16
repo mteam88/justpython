@@ -1,1 +1,1 @@
-from .tinydb import register_user, is_user
+from .tinydb import register_user, is_user, username_exists
