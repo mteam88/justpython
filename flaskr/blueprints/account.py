@@ -21,6 +21,7 @@ def login():
       flash(f'You have been logged in as {form.username.data}')
       return redirect(url_for('homehandler'))
     else:
+      print("no user")
       return redirect(url_for('account_bp.register'))
   else:
     error = '''Invalid username or password. Your username must be at least 4 
@@ -33,8 +34,12 @@ def register():
   form = RegistrationForm(request.form)
   if request.method == 'POST':
     if form.validate():
-      db.register_user(form)
-      return redirect(url_for('homehandler'))
+      if db.username_exists(form):
+        error = '''A user with this username has registered already.'''
+        return render_template('views/register.html', error=error)
+      else: 
+        db.register_user(form)
+        return redirect(url_for('homehandler'))
     else:
       error = '''Invalid username or password. Your username must be at least 4 
          characters and at most 25. Your password must be at least 6 characters and at most 30.'''
