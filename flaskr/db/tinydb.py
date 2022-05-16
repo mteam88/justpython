@@ -13,6 +13,9 @@ def is_user(loginform):
     'returns True if login form correlates to a user else False'
     return (accountdb.search((UserQuery.username == loginform.username.data) & (UserQuery.password == hashsaltpassword(loginform.password.data))))
 
+def username_exists(form):
+    return (accountdb.search((UserQuery.username == form.username.data)))
+
 def hashsaltpassword(password: str):
     salt = bcrypt.gensalt()
-    return str(bcrypt.hashpw(bytes(registrationform.username.data, encoding='utf-8'), salt))
+    return str(bcrypt.hashpw(bytes(password, encoding='utf-8'), salt))
