@@ -1,5 +1,6 @@
 from tinydb import TinyDB, Query
-import bcrypt
+import flask_bcrypt
+bcrypt = flask_bcrypt.Bcrypt()
 
 accountdb = TinyDB('accountdb.json')
 
@@ -11,11 +12,10 @@ def register_user(registrationform):
 
 def is_user(loginform):
     'returns True if login form correlates to a user else False'
-    return (accountdb.search((UserQuery.username == loginform.username.data) & (UserQuery.password == hashsaltpassword(loginform.password.data))))
+    return bool(accountdb.search((UserQuery.username == loginform.username.data) & (UserQuery.password.test(bcrypt.check_password_hash,loginform.password.data))))
 
 def username_exists(form):
-    return (accountdb.search((UserQuery.username == form.username.data)))
+    return bool(accountdb.search((UserQuery.username == form.username.data)))
 
 def hashsaltpassword(password: str):
-    salt = bcrypt.gensalt()
-    return str(bcrypt.hashpw(bytes(password, encoding='utf-8'), salt))
+    return bcrypt.generate_password_hash(password).decode('utf-8')
