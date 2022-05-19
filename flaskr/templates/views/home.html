@@ -9,7 +9,7 @@
         <h1>Stonks</h1>
         {% include 'macros/_flashes.html' %}
         {% for stockwidget in stockwidgets: %}
-            {{stockwidget}}
+            {{ stockwidget.__repr__(height=500)|safe }}
         {%endfor%}
     </body>
 </html>
